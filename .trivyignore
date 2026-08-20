@@ -1,0 +1,12 @@
+# GHSA-6v7p-g79w-8964 (msgpack) — false positive.
+# Trivy's Python SBOM detection reports the pre-upgrade version (1.1.2)
+# despite the image actually installing msgpack 1.2.1 (patched), confirmed
+# in the Build image step logs and in Trivy's own filesystem package listing.
+GHSA-6v7p-g79w-8964
+
+# CVE-2025-47273 (setuptools) — false positive, same cause as above.
+# Verified installed version is setuptools 84.0.0 (patched).
+CVE-2025-47273
+
+# CVE-2026-59890 (setuptools) — false positive, same cause as above.
+CVE-2026-59890
