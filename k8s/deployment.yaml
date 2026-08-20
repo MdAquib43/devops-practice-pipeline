@@ -18,8 +18,9 @@ spec:
         - name: task-api
           # Swap <YOUR_GH_USERNAME>/<YOUR_REPO> once CI has pushed an image
           #image: ghcr.io/<YOUR_GH_USERNAME>/<YOUR_REPO>:latest
-          image: task-api:local
-          imagePullPolicy: Never
+          image: ghcr.io/mdaquib43/devops-practice-pipeline:latest
+          # #image: task-api:local
+          # imagePullPolicy: Never
           ports:
             - containerPort: 8000
           envFrom:
