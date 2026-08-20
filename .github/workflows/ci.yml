@@ -42,8 +42,8 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build image
-        run: docker build -t ${{ env.IMAGE_NAME }}:${{ github.sha }} -t ${{ env.IMAGE_NAME }}:latest .
-
+        run: docker build --provenance=false --sbom=false -t ${{ env.IMAGE_NAME }}:${{ github.sha }} -t ${{ env.IMAGE_NAME }}:latest .
+          
       - name: Scan image with Trivy (gate — blocks push on findings)
         uses: aquasecurity/trivy-action@master
         with:
