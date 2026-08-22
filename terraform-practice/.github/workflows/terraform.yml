@@ -9,6 +9,10 @@ on:
     branches:
       - feature_branch_1
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   terraform:
     runs-on: ubuntu-latest
@@ -20,11 +24,20 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
 
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v5
+        with:
+          role-to-assume: arn:aws:iam::237162087889:role/GitHubActionsTerraformRole
+          aws-region: us-east-1
+
       - name: Terraform Init
+        working-directory: terraform-practice
         run: terraform init
 
       - name: Terraform Validate
+        working-directory: terraform-practice
         run: terraform validate
 
       - name: Terraform Plan
+        working-directory: terraform-practice
         run: terraform plan -out=tfplan
