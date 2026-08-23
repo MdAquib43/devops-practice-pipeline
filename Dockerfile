@@ -2,8 +2,11 @@ FROM python:3.12-slim AS base
 
 WORKDIR /code
 
+# Pick up any OS-level security patches Debian has already published
+RUN apt-get update && apt-get upgrade -y && rm -rf /var/lib/apt/lists/*
+
 COPY app/requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --upgrade pip && pip install --no-cache-dir -r requirements.txt
 
 COPY app/ ./app/
 
